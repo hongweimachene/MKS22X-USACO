@@ -28,11 +28,6 @@ public class USACO {
       }
       finalElev(elevation);
       data.close();
-      for (int i = 0 ; i < map.length; i++) {
-        for (int j = 0; j < map[i].length; j++) {
-          
-        }
-      }
       return volume();
     //}
     // catch (FileNotFoundException e) {
@@ -42,6 +37,7 @@ public class USACO {
   }
   private static void stompDig(int row, int col, int dig) {
     int[][] grid = new int[][] {
+      {row,col},
       {row+1,col},
       {row+1,col+1},
       {row+1,col+2},
@@ -51,12 +47,13 @@ public class USACO {
       {row,col+1},
       {row,col+2},
     };
-    // for (int i = 0; i < grid.length; i++){
-    //   System.out.println(grid[i][0] + " " + grid[i][1]);
-    //   System.out.println(" ");
-    // }
-    int destined = map[row][col] - dig;
-    map[row][col] = destined;
+    int max = 0;
+    for (int x = 0; x < grid.length; x++) {
+      if (map[ grid[x][0] - 1 ][ grid[x][1] - 1 ] > max) {
+        max = map[ grid[x][0] - 1][ grid[x][1] - 1 ];
+      }
+    }
+    int destined = max - dig;
     for (int i = 0; i < grid.length; i++){
       if (map[grid[i][0]-1][grid[i][1]-1] >= destined) {
         map[grid[i][0]-1][grid[i][1]-1] = destined;
