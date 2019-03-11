@@ -103,21 +103,7 @@ public class USACO {
   }
 
   private static int solveBoard(int startX, int startY, int endX, int endY, int steps) {
-    for (int x = 0; x < board.length; x++) {
-      for (int y = 0; y < board[x].length; y++) {
-        System.out.print(board[x][y] + " ");
-      }
-      System.out.println(" ");
-    }
-    System.out.println(" ");
     board[startX][startY] = 1;
-    for (int x = 0; x < board.length; x++) {
-      for (int y = 0; y < board[x].length; y++) {
-        System.out.print(board[x][y] + " ");
-      }
-      System.out.println(" ");
-    }
-    System.out.println(" ");
     int[][] state = new int[board.length][board[0].length];
     for (int i = 0; i < steps; i++) {
       for (int j = 0; j < board.length; j++) {
@@ -141,13 +127,6 @@ public class USACO {
         }
       }
       board = state;
-      for (int x = 0; x < board.length; x++) {
-        for (int y = 0; y < board[x].length; y++) {
-          System.out.print(board[x][y] + " ");
-        }
-        System.out.println(" ");
-      }
-      System.out.println(" ");
       state = new int[board.length][board[0].length];
     }
     return board[endX][endY];
