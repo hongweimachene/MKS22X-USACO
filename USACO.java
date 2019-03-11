@@ -14,6 +14,7 @@ public class USACO {
       String[] given = line.split(" ");
       map = new int[Integer.parseInt(given[0])][Integer.parseInt(given[1])];
       int elevation = Integer.parseInt(given[2]);
+      //to transfer the initial elevations from the file onto a map 2d array variable
       int rowN = 0;
       while (data.hasNextLine() && rowN < map.length) {
         String row = data.nextLine();
