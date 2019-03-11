@@ -90,9 +90,8 @@ public class USACO {
     int rowN = 0;
     while (data.hasNextLine() && rowN < board.length) {
       String row = data.nextLine();
-      String[] field = row.split(" ");
-      for (int i = 0; i < field.length; i++) {
-        if (field[i].equals("*")) {
+      for (int i = 0; i < row.length(); i++) {
+        if (row.charAt(i) == '*') {
           board[rowN][i] = -1;
         }
       }
@@ -100,33 +99,56 @@ public class USACO {
     }
     String lastLine = data.nextLine();
     String[] commands = lastLine.split(" ");
-    return solveBoard(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]), Integer.parseInt(commands[2]), Integer.parseInt(commands[3]), Integer.parseInt(given[2]));
+    return solveBoard(Integer.parseInt(commands[0]) - 1, Integer.parseInt(commands[1]) - 1, Integer.parseInt(commands[2]) - 1, Integer.parseInt(commands[3]) - 1, Integer.parseInt(given[2]));
   }
 
   private static int solveBoard(int startX, int startY, int endX, int endY, int steps) {
     for (int x = 0; x < board.length; x++) {
-      for (int y = 0;)
+      for (int y = 0; y < board[x].length; y++) {
+        System.out.print(board[x][y] + " ");
+      }
+      System.out.println(" ");
     }
+    System.out.println(" ");
     board[startX][startY] = 1;
+    for (int x = 0; x < board.length; x++) {
+      for (int y = 0; y < board[x].length; y++) {
+        System.out.print(board[x][y] + " ");
+      }
+      System.out.println(" ");
+    }
+    System.out.println(" ");
+    int[][] state = new int[board.length][board[0].length];
     for (int i = 0; i < steps; i++) {
       for (int j = 0; j < board.length; j++) {
         for (int k = 0; k < board[j].length; k++) {
-          if (board[j][k] > 0) {
+          if (board[j][k] >= 0) {
             if (j - 1 >= 0 && board[j-1][k] > 0) {
-              board[j][k] += board[j-1][k];
+              state[j][k] += board[j-1][k];
             }
             if (j + 1 < board.length && board[j+1][k] > 0) {
-              board[j][k] += board[j+1][k];
+              state[j][k] += board[j+1][k];
             }
             if (k - 1 >= 0 && board[j][k-1] > 0) {
-              board[j][k] += board[j][k-1];
+              state[j][k] += board[j][k-1];
             }
             if (k + 1 < board[j].length && board[j][k+1] > 0) {
-              board[j][k] += board[j][k+1];
+              state[j][k] += board[j][k+1];
             }
+          } else {
+            state[j][k] = -1;
           }
         }
       }
+      board = state;
+      for (int x = 0; x < board.length; x++) {
+        for (int y = 0; y < board[x].length; y++) {
+          System.out.print(board[x][y] + " ");
+        }
+        System.out.println(" ");
+      }
+      System.out.println(" ");
+      state = new int[board.length][board[0].length];
     }
     return board[endX][endY];
   }
