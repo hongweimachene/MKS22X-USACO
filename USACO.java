@@ -4,6 +4,7 @@ import java.io.*;
 
 public class USACO {
   private static int[][] map;
+  private static int[][] board;
   public static int bronze(String filename) throws FileNotFoundException{
     //try{
       File file = new File(filename);
@@ -78,5 +79,24 @@ public class USACO {
       }
     }
     return depth * 72 * 72;
+  }
+
+  public static int silver(String filename) throws FileNotFoundException{
+    File file = new File(filename);
+    Scanner data = new Scanner(file);
+    String line = data.nextLine();
+    String[] given = line.split(" ");
+    board = new int[Integer.parseInt(given[0])][Integer.parseInt(given[1])];
+    int rowN = 0;
+    while (data.hasNextLine() && rowN < board.length) {
+      String row = data.nextLine();
+      String[] field = row.split(" ");
+      for (int i = 0; i < field.length; i++) {
+        if (field[i].equals("*")) {
+          board[rowN][i] = -1;
+        }
+      }
+      rowN++;
+    }
   }
 }
