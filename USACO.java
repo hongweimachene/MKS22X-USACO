@@ -98,5 +98,12 @@ public class USACO {
       }
       rowN++;
     }
+    String lastLine = data.nextLine();
+    String[] commands = lastLine.split(" ");
+    solveBoard()
+  }
+
+  private static void solveBoard(int startX, int startY, int endX, int endY, int steps) {
+
   }
 }
