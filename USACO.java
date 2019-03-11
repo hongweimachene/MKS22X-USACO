@@ -100,10 +100,16 @@ public class USACO {
     }
     String lastLine = data.nextLine();
     String[] commands = lastLine.split(" ");
-    solveBoard()
+    solveBoard(Integer.parseInt(commands[0]), Integer.parseInt(commands[1]), Integer.parseInt(commands[2]), Integer.parseInt(commands[3]), Integer.parseInt(given[2]);
   }
 
   private static void solveBoard(int startX, int startY, int endX, int endY, int steps) {
-
+    for (int i = 0; i < steps; i++) {
+      for (int j = 0; j < board.length; j++) {
+        for (int k = 0; k < board[j].length; k++) {
+          
+        }
+      }
+    }
   }
 }
